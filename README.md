@@ -1,1 +1,1 @@
-# Todo-using-MERN
+# An AI Powered Todo App build for the needy ones
