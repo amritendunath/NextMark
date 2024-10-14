@@ -24,13 +24,13 @@ const fetchItems = async () => {
 };
 
 //to get desire items from todos
-const queryItems = async () => {
+const queryItems = async ([userEmail]) => {
     const params = {
         TableName: 'todos',// Your DynamoDB table name
         KeyConditionExpression: 'id = :id AND user_email= :userEmail',
         ExpressionAttributeValues: {
             ':id': '0',
-            ':userEmail': 'anath@chegg.com'
+            ':userEmail': userEmail
         },
         ConsistentRead: true,
     };
@@ -42,9 +42,10 @@ const queryItems = async () => {
         return data.Items; // Return the items fetched from the table
         // return command;
     } catch (error) {
-        console.error('Unable to scan the table. Error:', JSON.stringify(error, null, 2));
+        console.error('Unable to query the table. Error:', JSON.stringify(error, null, 2));
         return [];
     }
+
 };
 
 module.exports= {fetchItems,queryItems};
