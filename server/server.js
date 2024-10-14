@@ -23,7 +23,9 @@ app.get('/todos', async (req, res) => {
 
 // get queryTodos
 app.get('/qTodos/:userEmail', async (req, res) => {
-  const userEmail = req.params.userEmail;
+  const {userEmail} = req.params;
+  console.log(userEmail)
+  console.log(req);
   try {
     const todos = await queryItems([userEmail]);
     console.log(todos)
