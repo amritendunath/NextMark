@@ -27,7 +27,7 @@ app.get('/qTodos/:userEmail', async (req, res) => {
   console.log(userEmail)
   console.log(req);
   try {
-    const todos = await queryItems([userEmail]);
+    const todos = await queryItems(userEmail);
     console.log(todos)
     res.json(todos)
   } catch (err) {

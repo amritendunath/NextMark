@@ -1,7 +1,7 @@
 const ProgressBar = () => {
     return (
       <div>
-        Anath
+
       </div>
     );
   }

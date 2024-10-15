@@ -24,7 +24,7 @@ const fetchItems = async () => {
 };
 
 //to get desire items from todos
-const queryItems = async ([userEmail]) => {
+const queryItems = async (userEmail) => {
     const params = {
         TableName: 'todos',// Your DynamoDB table name
         KeyConditionExpression: 'id = :id AND user_email= :userEmail',
