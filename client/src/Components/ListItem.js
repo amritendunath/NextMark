@@ -1,7 +1,7 @@
-const ListItem = () => {
+const ListItem = ({task}) => {
     return (
       <div>
-        Anath
+        {task.title}
       </div>
     );
   }
