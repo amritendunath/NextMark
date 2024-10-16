@@ -49,16 +49,53 @@ body {
     border: 1.5px solid rgb(255, 175, 163);
     color: rgb(255, 175, 163);
     text-transform: uppercase;
-  }
-  
-  .delete:hover {
+}
+
+.delete:hover {
     background-color: rgb(255, 201, 193);
-  }
-  
-  .delete:active {
+}
+
+.delete:active {
     background-color: rgb(255, 175, 163);
     color: rgb(255, 255, 255);
-  }
+}
+
+
+
+.create {
+    border: 1.5px solid rgb(108, 115, 148);
+    color: rgb(108, 115, 148);
+    text-transform: uppercase;
+}
+
+.create:hover {
+    background-color: rgb(131, 138, 172);
+}
+
+.create:active {
+    background-color: rgb(108, 115, 148);
+    color: rgb(255, 255, 255)
+}
+
+
+
+.signout {
+    border: 1.5px solid rgb(255, 175, 163);
+    background-color: rgb(255, 175, 163) !important;
+    color: rgb(234, 234, 234);
+}
+
+.signout:hover {
+    background-color: rgb(175, 94, 94) !important;
+    border: 1.5px solid rgb(175, 94, 94);
+}
+
+.signout:active {
+    border: 1.5px solid rgb(175, 81, 81) !important;
+    background-color: rgb(175, 81, 81) !important;
+    color: rgb(255, 255, 255);
+}
+
 
 .list-header {
     align-items: center;
