@@ -1,17 +1,33 @@
 import {useState} from 'react'
 
 const Modal = () =>{
-  const [data, setData]=useState(null)
+  const mode = 'create'
+  const editMode = mode === 'edit' ? true : false;
+  const [data, setData]=useState({
+    user_email : "",
+    title: "",
+    progress: "",
+    date: editMode ? "" : new Date()  
+  })
 
-const mode = 'edit'
-  const handleChange = () => {
-    console.log('changing')
+
+
+  const handleChange = (e) => {
+    // const {name, value} = e.target;
+    setData(data => ({
+      //destructure data and update the value of the key which is name
+      ...data, // Using Spread Operator so that all exisiting properties if Data are retained
+      [e.target.name]: e.target.value
+      // [name]:value
+    }))
+    console.log(data)
   }
+
   return (
     <div className="overlay">
       <div className="modal">
         <div className="form-title-container">
-          <h3>Let's {mode} you task</h3>
+          <h3>Let's {mode} your task</h3>
           <button>X</button>
         </div>
         <form>
@@ -21,7 +37,7 @@ const mode = 'edit'
             placeholder="Your task goes here"
             name ="title"
             value={""}
-            onChange={handleChange}
+            onChange={""}
           />
           <br/>
           <label for="range">Drag to select your current progress</label>
@@ -33,7 +49,7 @@ const mode = 'edit'
             max="100"
             name="progress"
             value={""}
-            onChange={handleChange}
+            onChange={""}
           />
           <input className={mode} type="submit"/>
         </form>
