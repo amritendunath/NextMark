@@ -36,8 +36,8 @@ const Modal = () =>{
             maxLength={30}
             placeholder="Your task goes here"
             name ="title"
-            value={""}
-            onChange={""}
+            value={data.title}
+            onChange={handleChange}
           />
           <br/>
           <label for="range">Drag to select your current progress</label>
@@ -48,8 +48,8 @@ const Modal = () =>{
             min="0"
             max="100"
             name="progress"
-            value={""}
-            onChange={""}
+            value={data.progress}
+            onChange={handleChange}
           />
           <input className={mode} type="submit"/>
         </form>
