@@ -17,7 +17,7 @@ const ListItem = ({task}) => {
           <button className="edit" onClick={()=>setShowModal(true)}>Edit</button>
           <button className="delete">Delete</button>
         </div>
-        {showModal && <Modal mode={"edit"} setShowModal={setShowModal}/>}
+        {showModal && <Modal mode={"edit"} setShowModal={setShowModal} task={task}/>}
       </li>
     );
   }
