@@ -1,6 +1,5 @@
 const { DynamoDBClient, ScanCommand  } = require( "@aws-sdk/client-dynamodb")
-const { QueryCommand, DynamoDBDocumentClient } =require( "@aws-sdk/lib-dynamodb")
-
+const { PutCommand, QueryCommand, DynamoDBDocumentClient } =require( "@aws-sdk/lib-dynamodb")
 
 const client = new DynamoDBClient({region: "us-east-1"}); // Specify your AWS region
 const docClient = DynamoDBDocumentClient.from(client);
@@ -47,5 +46,6 @@ const queryItems = async (userEmail) => {
     }
 
 };
+
 
 module.exports= {fetchItems,queryItems};

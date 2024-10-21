@@ -1,12 +1,13 @@
 const PORT = process.env.PORT ?? 8000
 const express = require('express')
 const app = express()
-const {fetchItems, queryItems} = require('./dynamoDB')
+const {v4: uuidv4} = require('uuid');
+const {fetchItems, queryItems,createItem} = require('./dynamoDB')
 const dotenv = require('dotenv')
 const cors = require('cors')
 
 app.use(cors())
-
+app.use(express.json())
 dotenv.config()
 
 // get all todos
@@ -22,7 +23,7 @@ app.get('/todos', async (req, res) => {
 })
 
 // get queryTodos
-app.get('/qTodos/:userEmail', async (req, res) => {
+app.get('/todos/:userEmail', async (req, res) => {
   const {userEmail} = req.params;
   console.log(userEmail)
   console.log(req);
