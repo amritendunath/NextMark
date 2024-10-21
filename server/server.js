@@ -35,7 +35,17 @@ app.get('/todos/:userEmail', async (req, res) => {
     console.error(err)
   }
 })
-
+//create a todo
+app.post('/todos', async(req,res)=>{
+  const {user_email, title, progress, date} =req.body;
+  const id = uuidv4();
+  try {
+    const newTodo = await createItem(id, user_email, title, progress, date);
+    console.log(newTodo)
+  } catch (error) {
+    console.log(error)
+  }
+})
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })

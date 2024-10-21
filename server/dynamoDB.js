@@ -46,6 +46,4 @@ const queryItems = async (userEmail) => {
     }
 
 };
-
-
 module.exports= {fetchItems,queryItems};
