@@ -46,4 +46,27 @@ const queryItems = async (userEmail) => {
     }
 
 };
-module.exports= {fetchItems,queryItems};
+
+//to create a todo
+const createItem = async (id, user_email, title, progress, date) => {
+    const params = {
+        TableName: 'todos',
+        Item: {
+            id: id,
+            user_email: user_email,
+            title: title,
+            progress: progress,
+            date: date
+        }
+    };
+
+    try {
+        const command = new PutCommand(params);
+        const response = await docClient.send(command);
+        console.log(response);
+        console.log('Item added successfully');
+    } catch (error) {
+        console.error('Unable to add item. Error:', JSON.stringify(error, null, 2));
+    }
+};
+module.exports= {fetchItems,queryItems,createItem};
