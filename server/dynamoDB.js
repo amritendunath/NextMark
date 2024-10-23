@@ -26,9 +26,8 @@ const fetchItems = async () => {
 const queryItems = async (userEmail) => {
     const params = {
         TableName: 'todos',// Your DynamoDB table name
-        KeyConditionExpression: 'id = :id AND user_email= :userEmail',
+        KeyConditionExpression: 'user_email= :userEmail',
         ExpressionAttributeValues: {
-            ':id': '0',
             ':userEmail': userEmail
         },
         ConsistentRead: true,
