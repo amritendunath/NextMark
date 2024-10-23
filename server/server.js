@@ -42,6 +42,7 @@ app.post('/todos', async(req,res)=>{
   try {
     const newTodo = await createItem(id, user_email, title, progress, date);
     console.log(newTodo)
+    res.json(newTodo)
   } catch (error) {
     console.log(error)
   }
