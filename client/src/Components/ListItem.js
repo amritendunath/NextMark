@@ -23,4 +23,3 @@ const ListItem = ({task}) => {
   }
   
   export default ListItem;
-  
