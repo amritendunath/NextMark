@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-const Modal = ({mode, setShowModal , task}) =>{
+const Modal = ({mode, setShowModal, getData, task}) =>{
   // const mode = 'create'
   const editMode = mode === 'edit' ? true : false;
   const [data, setData]=useState({
@@ -23,6 +23,7 @@ const Modal = ({mode, setShowModal , task}) =>{
       if(response.status === 200){
         console.log('Task added')
         setShowModal(false)
+        getData()
       }
     } catch (error) {
       console.error(error)
