@@ -19,4 +19,3 @@ const ListHeader = ({listName, getData}) => {
   }
   
   export default ListHeader;
-  
