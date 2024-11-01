@@ -92,4 +92,4 @@ const editItem = async () => {
         console.error('Unable to update item. Error:', JSON.stringify(error, null, 2));
     }
 };
-module.exports= {fetchItems,queryItems,createItem};
+module.exports= {fetchItems,queryItems,createItem,editItem};
