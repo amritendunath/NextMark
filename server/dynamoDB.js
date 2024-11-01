@@ -1,5 +1,5 @@
 const { DynamoDBClient, ScanCommand  } = require( "@aws-sdk/client-dynamodb")
-const { PutCommand, QueryCommand, DynamoDBDocumentClient } =require( "@aws-sdk/lib-dynamodb")
+const { PutCommand, QueryCommand, DynamoDBDocumentClient, UpdateCommand } =require( "@aws-sdk/lib-dynamodb")
 
 const client = new DynamoDBClient({region: "us-east-1"}); // Specify your AWS region
 const docClient = DynamoDBDocumentClient.from(client);
@@ -66,6 +66,30 @@ const createItem = async (id, user_email, title, progress, date) => {
         console.log('Item added successfully');
     } catch (error) {
         console.error('Unable to add item. Error:', JSON.stringify(error, null, 2));
+    }
+};
+
+//to edit a todo
+const editItem = async () => {
+    // Implementation for editing an item
+    const params = {
+        TableName: 'todos',
+        Key: {
+            id: id
+        },
+        UpdateExpression: 'set title = :title, progress = :progress',
+        ExpressionAttributeValues: {
+            ':title': title,
+            ':progress': progress
+        }
+    };
+    try {
+        const command = new UpdateCommand(params);
+        const response = await docClient.send(command);
+        console.log(response);
+        console.log('Item updated successfully');
+    } catch (error) {
+        console.error('Unable to update item. Error:', JSON.stringify(error, null, 2));
     }
 };
 module.exports= {fetchItems,queryItems,createItem};

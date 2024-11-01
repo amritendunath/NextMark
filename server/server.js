@@ -51,4 +51,15 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+//edit Data
+app.put('/todos/:id', async (req, res) => {
+  const {id} = req.params;
+  const {user_email, title, progress, date} =req.body;
+  try {
+    const editTodo = await editItem(id, user_email, title, progress, date);
+    res.json(editTodo)
+  } catch (error) {
+    console.log(error)
+  }
+})
 app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`))
