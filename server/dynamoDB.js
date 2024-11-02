@@ -24,13 +24,17 @@ const fetchItems = async () => {
 
 //to get desire items from todos
 const queryItems = async (userEmail) => {
+    if (!userEmail) {
+        console.error('Invalid input: id and user_email must be provided');
+        return [];
+    }
     const params = {
         TableName: 'todos',// Your DynamoDB table name
-        KeyConditionExpression: 'user_email= :userEmail',
+        IndexName: 'user_email-index',
+        KeyConditionExpression: 'user_email= :user_email',
         ExpressionAttributeValues: {
-            ':userEmail': userEmail
+            ':user_email': userEmail
         },
-        ConsistentRead: true,
     };
 
     try {
@@ -70,24 +74,28 @@ const createItem = async (id, user_email, title, progress, date) => {
 };
 
 //to edit a todo
-const editItem = async () => {
+const editItem = async (id, user_email, title, progress, date) => {
     // Implementation for editing an item
     const params = {
         TableName: 'todos',
         Key: {
             id: id
         },
-        UpdateExpression: 'set title = :title, progress = :progress',
+        UpdateExpression: 'set title = :title, progress = :progress,date = :date',
         ExpressionAttributeValues: {
+            ':id':id,
             ':title': title,
-            ':progress': progress
-        }
+            ':progress': progress,
+            ':date': date
+        },
+        ReturnValues: 'UPDATED_NEW'
     };
     try {
         const command = new UpdateCommand(params);
         const response = await docClient.send(command);
         console.log(response);
         console.log('Item updated successfully');
+        // return response;
     } catch (error) {
         console.error('Unable to update item. Error:', JSON.stringify(error, null, 2));
     }
