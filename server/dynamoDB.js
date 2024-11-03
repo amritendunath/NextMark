@@ -50,7 +50,7 @@ const queryItems = async (userEmail) => {
 
 };
 
-//to create a todo
+//to create a todo (postData)
 const createItem = async (id, user_email, title, progress, date) => {
     const params = {
         TableName: 'todos',
@@ -74,7 +74,7 @@ const createItem = async (id, user_email, title, progress, date) => {
     }
 };
 
-//to edit a todo
+//to edit a todo (editData)
 const editItem = async (id, user_email, title, progress, date) => {
     // Implementation for editing an item
     const params = {
