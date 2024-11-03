@@ -108,13 +108,13 @@ const editItem = async (id, user_email, title, progress, date) => {
 };
 
 //to delete a node
-const deleteItem= async(id)=>{
+const deleteItem = async(id, user_email)=>{
     const params = {
         TableName: 'todos',
         Key: {
             id: id,
             user_email: user_email
-        }
+        },
     };
     try {
         const command = new DeleteCommand(params);

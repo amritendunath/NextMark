@@ -51,9 +51,9 @@ app.get('/', (req, res) => {
 //edit Data
 app.put('/todos/:id', async (req, res) => {
   const {id} = req.params;
-  const {user_email, title, progress, date} =req.body;
+  const {user_email} =req.body;
   try {
-    const editTodo = await editItem(id, user_email, title, progress, date);
+    const editTodo = await editItem(id, user_email);
     res.json(editTodo)
   } catch (error) {
     console.log(error)
@@ -63,8 +63,9 @@ app.put('/todos/:id', async (req, res) => {
 //delete Data
 app.delete('/todos/:id', async(req,res)=>{
   const {id}=req.params;
+  const {user_email, title, progress, date} = req.body
   try {
-    const deleteTodo = await deleteItem(id);
+    const deleteTodo = await deleteItem(id, user_email, title, progress, date);
     res.json(deleteTodo)
   } catch (error) {
     console.log(error)
