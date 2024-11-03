@@ -2,7 +2,7 @@ const PORT = process.env.PORT ?? 8000
 const express = require('express')
 const app = express()
 const {v4: uuidv4} = require('uuid');
-const {fetchItems, queryItems, createItem, editItem} = require('./dynamoDB')
+const {fetchItems, queryItems, createItem, editItem, deleteItem} = require('./dynamoDB')
 const dotenv = require('dotenv')
 const cors = require('cors')
 

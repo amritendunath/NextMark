@@ -1,5 +1,5 @@
 const { DynamoDBClient, ScanCommand  } = require( "@aws-sdk/client-dynamodb")
-const { PutCommand, QueryCommand, DynamoDBDocumentClient, UpdateCommand } =require( "@aws-sdk/lib-dynamodb")
+const { DynamoDBDocumentClient, PutCommand, QueryCommand, UpdateCommand, DeleteCommand } =require( "@aws-sdk/lib-dynamodb")
 
 const client = new DynamoDBClient({region: "us-east-1"}); // Specify your AWS region
 const docClient = DynamoDBDocumentClient.from(client);
@@ -106,4 +106,24 @@ const editItem = async (id, user_email, title, progress, date) => {
         console.error('Unable to update item. Error:', JSON.stringify(error, null, 2));
     }
 };
-module.exports= {fetchItems,queryItems,createItem,editItem};
+
+//to delete a node
+const deleteItem= async(id)=>{
+    const params = {
+        TableName: 'todos',
+        Key: {
+            id: id,
+            user_email: user_email
+        }
+    };
+    try {
+        const command = new DeleteCommand(params);
+        const response = await docClient.send(command);
+        console.log(response);
+        console.log('Item deleted successfully');
+        return response;
+    } catch (error) {
+        console.error('Unable to delete item. Error:', JSON.stringify(error, null, 2));
+    }
+}
+module.exports= {fetchItems,queryItems,createItem,editItem, deleteItem};
