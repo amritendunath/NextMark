@@ -68,6 +68,7 @@ const createItem = async (id, user_email, title, progress, date) => {
         const response = await docClient.send(command);
         console.log(response);
         console.log('Item added successfully');
+        return response
     } catch (error) {
         console.error('Unable to add item. Error:', JSON.stringify(error, null, 2));
     }
@@ -79,11 +80,16 @@ const editItem = async (id, user_email, title, progress, date) => {
     const params = {
         TableName: 'todos',
         Key: {
-            id: id
+            id: id,
+            user_email: user_email
         },
-        UpdateExpression: 'set title = :title, progress = :progress,date = :date',
+        UpdateExpression: 'set #t = :title, #p = :progress, #d = :date',
+        ExpressionAttributeNames: {
+            '#t': 'title',
+            '#p': 'progress',
+            '#d': 'date'
+        },
         ExpressionAttributeValues: {
-            ':id':id,
             ':title': title,
             ':progress': progress,
             ':date': date
@@ -95,7 +101,7 @@ const editItem = async (id, user_email, title, progress, date) => {
         const response = await docClient.send(command);
         console.log(response);
         console.log('Item updated successfully');
-        // return response;
+        return response;
     } catch (error) {
         console.error('Unable to update item. Error:', JSON.stringify(error, null, 2));
     }
