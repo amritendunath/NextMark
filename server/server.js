@@ -51,9 +51,9 @@ app.get('/', (req, res) => {
 //edit Data
 app.put('/todos/:id', async (req, res) => {
   const {id} = req.params;
-  const {user_email} =req.body;
+  const {user_email, title, progress, date} =req.body;
   try {
-    const editTodo = await editItem(id, user_email);
+    const editTodo = await editItem(id, user_email, title, progress, date);
     res.json(editTodo)
   } catch (error) {
     console.log(error)
