@@ -5,6 +5,9 @@ const {v4: uuidv4} = require('uuid');
 const {fetchItems, queryItems, createItem, editItem, deleteItem} = require('./dynamoDB')
 const dotenv = require('dotenv')
 const cors = require('cors')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+
 
 app.use(cors())
 app.use(express.json())
@@ -67,6 +70,19 @@ app.delete('/todos/:id', async(req,res)=>{
   try {
     const deleteTodo = await deleteItem(id, user_email, title, progress, date);
     res.json(deleteTodo)
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+//signup
+app.post('/signup', async(req,res)=>{
+  const {email, password}= req.body
+  const salt = bcrypt.genSaltSync(10)
+  const hashedPassword = bcrypt.hashSync(password, salt)
+  try {
+    const signup = await signUp(email, hashedPassword)
+    res.json(signup)
   } catch (error) {
     console.log(error)
   }
