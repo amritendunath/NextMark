@@ -126,4 +126,24 @@ const deleteItem = async(id, user_email)=>{
         console.error('Unable to delete item. Error:', JSON.stringify(error, null, 2));
     }
 }
-module.exports= {fetchItems,queryItems,createItem,editItem, deleteItem};
+
+//to sign up
+const signUp = async(email, password)=>{
+    const params = {
+        TableName: 'users',
+        Item: {
+            email: email,
+            password: password
+        }
+    };
+    try {
+        const command = new PutCommand(params);
+        const response = await docClient.send(command);
+        console.log(response);
+        console.log('Item added successfully');
+        return response
+    } catch (error) {
+        console.error('Unable to add item. Error:', JSON.stringify(error, null, 2));
+    }
+}
+module.exports= {fetchItems,queryItems,createItem,editItem, deleteItem, signUp};
