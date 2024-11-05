@@ -26,12 +26,12 @@ const Auth = () => {
           >
             Login
           </button>
+
           <button onClick={() => viewLogin(false)}
             style={{ backgroundColor: !isLogin ? 'rgb(255, 255, 255)' : 'rgb(188, 188, 188)' }}
           >
             SignUp
           </button>
-
         </div>
       </div>
     </div>
