@@ -11,15 +11,24 @@ const Auth = () => {
     setError(null)
     setIsLogin(status)
   }
-
-  const handleSubmit = async(e ,endPoint) =>{
+  console.log(email,password,confirmPassword );
+  const handleSubmit = async(req, e ,endPoint) =>{
     e.preventDefault()
+    const data = {
+      email: req.body,
+      password: req.body
+    }
     if(!isLogin && password !== confirmPassword){
       setError('Password does not match')
       return
     }
-    else
-      await fetch(`${process.env.REACT_APP_SERVERURL}/${endPoint}`)
+    else{
+      await fetch(`${process.env.REACT_APP_SERVERURL}/${endPoint}`,{
+        mehtod: 'POST',
+        headers: {'Content-Type' : 'application/json'},
+        body: JSON.stringify(data)
+      })
+    } 
   }
 
   return (
