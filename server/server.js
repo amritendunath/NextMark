@@ -66,9 +66,9 @@ app.put('/todos/:id', async (req, res) => {
 //delete Data
 app.delete('/todos/:id', async(req,res)=>{
   const {id}=req.params;
-  const {user_email, title, progress, date} = req.body
+  const {user_email} = req.body
   try {
-    const deleteTodo = await deleteItem(id, user_email, title, progress, date);
+    const deleteTodo = await deleteItem(id, user_email);
     res.json(deleteTodo)
   } catch (error) {
     console.log(error)
