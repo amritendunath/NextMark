@@ -82,7 +82,7 @@ app.post('/signup', async(req,res)=>{
   const hashedPassword = bcrypt.hashSync(password, salt)
   try {
     const signup = await signUp(email, hashedPassword)
-    res.json(signup)
+    res.json({email, password, signup})
   } catch (error) {
     console.log(error)
   }
