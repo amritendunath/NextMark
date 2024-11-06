@@ -1,12 +1,15 @@
 import { useState } from 'react';
+import {useCookies} from 'react-cookie'
 
 const Auth = () => {
+  const [cookies, setCookie, removeCookie] = useCookies(null)
   const [error, setError] = useState(null)
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
 
+  console.log(cookies)
   const viewLogin = (status) => {
     setError(null)
     setIsLogin(status)
@@ -24,8 +27,11 @@ const Auth = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     })
+    const json = await response.json()
     if (response.status === 200) {
       console.log('Success')
+      setCookie('Email', json.email)
+      setCookie('AuthToken', json.token)
     }
     else {
       setError('Something went wrong')
