@@ -19,23 +19,16 @@ const Auth = () => {
       setError('Password does not match')
       return
     }
+    const response = await fetch(`${process.env.REACT_APP_SERVERURL}/${endPoint}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    if (response.status === 200) {
+      console.log('Success')
+    }
     else {
-      try {
-        const response = await fetch(`${process.env.REACT_APP_SERVERURL}/${endPoint}`, {
-          mehtod: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        })
-        if (response.status === 200) {
-          console.log('Success')
-        }
-        else {
-          setError('Something went wrong')
-        }
-
-      } catch (error) {
-        console.log(error)
-      }
+      setError('Something went wrong')
     }
   }
 

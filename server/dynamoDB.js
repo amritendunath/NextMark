@@ -128,19 +128,19 @@ const deleteItem = async(id, user_email)=>{
 }
 
 //to sign up
-const signUp = async(email, password)=>{
+const signUp = async(email, hashedPassword)=>{
     const params = {
         TableName: 'users',
         Item: {
             email: email,
-            password: password
+            password: hashedPassword
         }
     };
     try {
         const command = new PutCommand(params);
         const response = await docClient.send(command);
         console.log(response);
-        console.log('Item added successfully');
+        console.log('SignedUp successfully');
         return response
     } catch (error) {
         console.error('Unable to add item. Error:', JSON.stringify(error, null, 2));
