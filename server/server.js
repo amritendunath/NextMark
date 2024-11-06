@@ -82,7 +82,8 @@ app.post('/signup', async(req,res)=>{
   const hashedPassword = bcrypt.hashSync(password, salt)
   try {
     const signup = await signUp(email, hashedPassword)
-    res.json({email, password, signup})
+    const token = jwt.sign({email}, 'secret', {expiresIn: '1hr'})
+    res.json({email, token, signup})
   } catch (error) {
     console.log(error)
   }
