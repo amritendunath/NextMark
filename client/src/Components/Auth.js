@@ -28,6 +28,7 @@ const Auth = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     })
+    //setCookie used in response of SighUo
     const json = await response.json()
     if (response.status === 200) {
       console.log('Success')
