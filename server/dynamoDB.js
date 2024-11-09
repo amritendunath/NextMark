@@ -146,6 +146,7 @@ const signUp = async (email, hashedPassword) => {
         console.error('Unable to add item. Error:', JSON.stringify(error, null, 2));
     }
 }
+
 //to login
 const login = async (email) => {
     const params = {
