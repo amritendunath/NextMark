@@ -1,7 +1,7 @@
-const { DynamoDBClient, ScanCommand  } = require( "@aws-sdk/client-dynamodb")
-const { DynamoDBDocumentClient, PutCommand, QueryCommand, UpdateCommand, DeleteCommand } =require( "@aws-sdk/lib-dynamodb")
+const { DynamoDBClient, ScanCommand } = require("@aws-sdk/client-dynamodb")
+const { DynamoDBDocumentClient, PutCommand, QueryCommand, UpdateCommand, DeleteCommand } = require("@aws-sdk/lib-dynamodb")
 
-const client = new DynamoDBClient({region: "us-east-1"}); // Specify your AWS region
+const client = new DynamoDBClient({ region: "us-east-1" }); // Specify your AWS region
 const docClient = DynamoDBDocumentClient.from(client);
 
 //to get all items from todos
@@ -108,7 +108,7 @@ const editItem = async (id, user_email, title, progress, date) => {
 };
 
 //to delete a node
-const deleteItem = async(id, user_email)=>{
+const deleteItem = async (id, user_email) => {
     const params = {
         TableName: 'todos',
         Key: {
@@ -128,7 +128,7 @@ const deleteItem = async(id, user_email)=>{
 }
 
 //to sign up
-const signUp = async(email, hashedPassword)=>{
+const signUp = async (email, hashedPassword) => {
     const params = {
         TableName: 'users',
         Item: {
@@ -146,4 +146,23 @@ const signUp = async(email, hashedPassword)=>{
         console.error('Unable to add item. Error:', JSON.stringify(error, null, 2));
     }
 }
-module.exports= {fetchItems,queryItems,createItem,editItem, deleteItem, signUp};
+//to login
+const login = async (email) => {
+    const params = {
+        TableName: 'users',
+        KeyConditionExpression: "email= :email",
+        ExpressionAttributeValues: {
+            ':email': email
+        },
+    };
+    try {
+        const command = new QueryCommand(params);
+        const data = await docClient.send(command);
+        console.log(command)
+        return data
+    } catch (error) {
+        console.error('Unable to query the table. Error:', JSON.stringify(error, null, 2));
+        return [];
+    }
+}
+module.exports = { fetchItems, queryItems, createItem, editItem, deleteItem, signUp, login };
