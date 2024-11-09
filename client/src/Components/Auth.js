@@ -17,7 +17,9 @@ const Auth = () => {
   console.log(email, password, confirmPassword);
   const handleSubmit = async (e, endPoint) => {
     e.preventDefault()
+
     const data = {email,password}
+
     if (!isLogin && password !== confirmPassword) {
       setError('Password does not match')
       return
@@ -30,10 +32,11 @@ const Auth = () => {
     })
     //setCookie used in response of SighUo
     const json = await response.json()
-    if (response.status === 200) {
+    if(response.status === 200) {
       console.log('Success')
       setCookie('Email', json.email)
       setCookie('AuthToken', json.token)
+      window.location.reload()
     }
     else {
       setError('Something went wrong')
