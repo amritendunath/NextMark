@@ -133,7 +133,7 @@ const signUp = async (email, hashedPassword) => {
         TableName: 'users',
         Item: {
             email: email,
-            password: hashedPassword
+            hashedPassword: hashedPassword
         }
     };
     try {
