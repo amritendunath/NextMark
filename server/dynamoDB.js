@@ -24,10 +24,10 @@ const fetchItems = async () => {
 
 //to get desire items from todos
 const queryItems = async (userEmail) => {
-    if (!userEmail) {
-        console.error('Invalid input: id and user_email must be provided');
-        return [];
-    }
+    // if (!userEmail) {
+    //     console.error('Invalid input: id and user_email must be provided');
+    //     return [];
+    // }
     const params = {
         TableName: 'todos',// Your DynamoDB table name
         IndexName: 'user_email-index',
@@ -51,7 +51,7 @@ const queryItems = async (userEmail) => {
 };
 
 //to create a todo (postData)
-const createItem = async (id, user_email, title, progress, date) => {
+const createItem = async ({id, user_email, title, progress, date}) => {
     const params = {
         TableName: 'todos',
         Item: {

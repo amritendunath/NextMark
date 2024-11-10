@@ -24,7 +24,7 @@ const Auth = () => {
       setError('Password does not match')
       return
     }
-    //fetch API for SignUp
+    //fetch API for SignUp And Login
     const response = await fetch(`${process.env.REACT_APP_SERVERURL}/${endPoint}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

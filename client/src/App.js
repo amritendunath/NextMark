@@ -6,26 +6,27 @@ import { useCookies } from "react-cookie";
 
 const App = () => {
 
-  const [cookies, setCookie, removeCookie] = useCookies(null);  
+  const [cookies, setCookie, removeCookie] = useCookies(null);
 
   const authToken = cookies.AuthToken
   const userEmail = cookies.Email
 
-  const [tasks, setTask] = useState(null);
+
+  const [tasks, setTasks] = useState([]);
 
   const getData = async () => {
     try {
       const response = await fetch(`${process.env.REACT_APP_SERVERURL}/todos/${userEmail}`);
       const json = await response.json();
       console.log(json)
-      setTask(json)
+      setTasks(json)
     } catch (error) {
       console.error(error)
     }
   }
 
   useEffect(() => {
-    if(authToken){
+    if (authToken) {
       getData()
     }
   }, [])
@@ -33,19 +34,22 @@ const App = () => {
   console.log(tasks)
 
   //sort by date
-  const sortedTasks = tasks?.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate))
+  const sortedTasks = Array.isArray(tasks) ? tasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate)) : [];
+
+  // const sortedTasks = tasks?.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate))
 
   return (
     <div className="app">
-      {!authToken && <Auth/>}
+      {!authToken && <Auth />}
       {authToken &&
         <>
           <ListHeader listName={"🏝️Holiday Tick List"} getData={getData} />
           <p className="user-email">Welcome back {userEmail}</p>
           {sortedTasks?.map((task) => <ListItem key={task.id} task={task} getData={getData} />)}
+
         </>
       }
-        <p className="copyright">© NextMark Software Lab</p>
+      <p className="copyright">© NextMark Software Lab</p>
     </div>
   );
 }
