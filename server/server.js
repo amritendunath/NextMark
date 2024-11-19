@@ -131,7 +131,7 @@ app.post("/add-note", authenticateToken, async (req, res) => {
 // })
 
 
-//using.......
+//using.......authenticationtoken which carries the data of user 
 app.put("/edit-note/:noteId", authenticateToken, async (req, res) => {
   const noteId = req.params.noteId;
   const { user } = req.user;
