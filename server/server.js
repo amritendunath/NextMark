@@ -156,7 +156,7 @@ app.put("/edit-note/:noteId", authenticateToken, async (req, res) => {
     });
   }
 });
-
+// ************************************************
 //Method 1: Deleting data,
 //delete Data
 // app.delete('/todos/:id', async (req, res) => {
