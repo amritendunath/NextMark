@@ -227,7 +227,6 @@ app.post("/create-account", async (req, res) => {
     const user = await signUp(email, password)
     // const user = { user: userInfo }
     // console.log('userInfo', userInfo)
-    // console.log('userInfo', user)
     const accessToken = jwt.sign({user}, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: "36000m",
     });
