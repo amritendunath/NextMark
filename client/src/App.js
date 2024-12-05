@@ -1,7 +1,5 @@
 import Auth from "./Components/Auth";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import ListItem from "./Components/ListItem";
-import ListHeader from "./Components/ListHeader";
 import Home from "./Get";
 
 
