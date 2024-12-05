@@ -10,7 +10,11 @@ const ListHeader = ({ listName, getData }) => {
     localStorage.clear()
     navigate("/login");
   }
-
+//   useEffect(() => {
+//     console.log('useEffect triggered')
+//     getData();
+//     return () => {};
+//   },[]);
   return (
     <div className="list-header">
       <h1>{listName}</h1>
