@@ -5,7 +5,7 @@ import { validateEmail } from "../utils/helper";
 
 const Auth = ({getData}) => {
   const [error, setError] = useState(null)
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogIn, setisLogIn] = useState(true);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
@@ -14,7 +14,7 @@ const Auth = ({getData}) => {
 
   const viewLogin = (status) => {
     setError(null)
-    setIsLogin(status)
+    setisLogIn(status)
   }
   console.log(email, password, confirmPassword);
   
@@ -51,32 +51,45 @@ const Auth = ({getData}) => {
     }
   }
   return (
-    <div clasName="auth-container">
-      <div clasName="auth-container">
+    <div className="auth-container">
+      <div className="auth-container-box">
+
         <form>
-          <h2>{isLogin ? 'Please LogIn' : 'Please SignUp'}</h2>
+          <h2>{isLogIn ? 'Please LogIn' : 'Please SignUp'}</h2>
+
           <input 
           type="email" 
           placeholder="email" 
-          onChange={(e) => setEmail(e.target.value)}></input>
-          <input type="passsword" placeholder="password" onChange={(e) => setPassword(e.target.value)}></input>
-          {!isLogin && <input type="password" placeholder="confirm password" onChange={(e) => setConfirmPassword(e.target.value)}></input>}
-          <input type="submit" className="create" onClick={(e) => handleSubmit(e, isLogin ? 'login' : 'create-account')}></input>
+          onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <input 
+          type="passsword" 
+          placeholder="password" 
+          onChange={(e) => setPassword(e.target.value)}
+          />
+          
+          {!isLogIn && <input type="password" placeholder="confirm password" onChange={(e) => setConfirmPassword(e.target.value)}></input>}
+          <input type="submit" className="create" onClick={(e) => handleSubmit(e, isLogIn ? 'login' : 'create-account')}></input>
           {error && <p>{error}</p>}
         </form>
+
         <div className="auth-options">
-          <button onClick={() => viewLogin(true)}
-            style={{ backgroundColor: isLogin ? 'rgb(255, 255, 255)' : 'rgb(188, 188, 188)' }}
+          <button 
+            onClick={() => viewLogin(true)}
+            style={{ backgroundColor: isLogIn ? 'rgb(255, 255, 255)' : 'rgb(188, 188, 188)' }}
           >
             Login
           </button>
 
-          <button onClick={() => viewLogin(false)}
-            style={{ backgroundColor: !isLogin ? 'rgb(255, 255, 255)' : 'rgb(188, 188, 188)' }}
+          <button 
+            onClick={() => viewLogin(false)}
+            style={{ backgroundColor: !isLogIn ? 'rgb(255, 255, 255)' : 'rgb(188, 188, 188)' }}
           >
             SignUp
           </button>
         </div>
+
       </div>
     </div>
   );
