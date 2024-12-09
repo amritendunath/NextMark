@@ -67,7 +67,7 @@ app.get("/get-all-notes", authenticateToken, async (req, res) => {
 app.post("/add-note", authenticateToken, async (req, res) => {
   const { title, progress, date } = req.body;
   // const { user } = req.user;
-  const {user}  = req.user
+  const { user } = req.user
 
   // if (!user || !user.Items || user.Items.length === 0) {
   //   return res.status(400).json({ error: true, message: "User information is missing or incomplete" });
@@ -87,7 +87,7 @@ app.post("/add-note", authenticateToken, async (req, res) => {
   if (!user_email) {
     return res.status(400).json({ error: true, message: "User email is required" });
   }
-  console.log({Test: user_email, title, progress, date})
+  console.log({ Test: user_email, title, progress, date })
   try {
     const note = await createItem(
       id,
@@ -133,18 +133,16 @@ app.put("/edit-note/:noteId", authenticateToken, async (req, res) => {
   // }
 
   try {
-    console.log({Test: noteId, user_email, title, progress, date})
-    const note = await editItem({noteId, user_email, title, progress, date});
+    console.log({ Test: noteId, user_email, title, progress, date })
+    const note = await editItem({ noteId, user_email, title, progress, date });
     console.log('note', note)
-
-    // if (!note) {
-    //   return res.status(404).json({ error: true, message: "Note not found" });
-    // }
+    
     return res.json({
       error: false,
       note,
       message: "Note updated successfully",
     });
+
   } catch (error) {
     return res.status(500).json({
       error: true,
@@ -226,7 +224,7 @@ app.post("/create-account", async (req, res) => {
   try {
     const user = await signUp(email, password)
     // const user = { user: userInfo }
-    const accessToken = jwt.sign({user}, process.env.ACCESS_TOKEN_SECRET, {
+    const accessToken = jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: "36000m",
     });
     return res.json({
@@ -289,7 +287,7 @@ app.post("/login", async (req, res) => {
   // }
 
   const user = await login(email)
-  console.log('user',user)
+  console.log('user', user)
 
   if (!user) {
     return res.status(400).json({ message: "User not found" });
@@ -299,7 +297,7 @@ app.post("/login", async (req, res) => {
     // const user = { user: userInfo };
     // console.log('login token',user)
     // const user = { user: userInfo }
-    const accessToken = jwt.sign({user}, process.env.ACCESS_TOKEN_SECRET, {
+    const accessToken = jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: "36000m",
     });
 
