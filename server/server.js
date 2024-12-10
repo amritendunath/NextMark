@@ -169,6 +169,7 @@ app.put("/edit-note/:noteId", authenticateToken, async (req, res) => {
 //     console.log(error)
 //   }
 // })
+//Method 2: Deleting Data
 app.delete("/delete-note/:noteId", authenticateToken, async (req, res) => {
   const noteId = req.params.noteId;
   const { user } = req.user;
