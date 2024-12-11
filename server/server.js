@@ -126,12 +126,6 @@ app.put("/edit-note/:noteId", authenticateToken, async (req, res) => {
   const { title, progress, date } = req.body;
   const user_email = user.email
   console.log('noteId', noteId)
-  // if (!title) {
-  //   return res
-  //     .status(400)
-  //     .json({ error: true, message: "No changes provided" });
-  // }
-
   try {
     console.log({ Test: noteId, user_email, title, progress, date })
     const note = await editItem({ noteId, user_email, title, progress, date });
