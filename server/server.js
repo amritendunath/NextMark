@@ -69,10 +69,6 @@ app.post("/add-note", authenticateToken, async (req, res) => {
   // const { user } = req.user;
   const { user } = req.user
 
-  // if (!user || !user.Items || user.Items.length === 0) {
-  //   return res.status(400).json({ error: true, message: "User information is missing or incomplete" });
-  // }
-
   // const user_email = user.Items[0].email
   const user_email = user.email
   console.log('user_email', user_email)
