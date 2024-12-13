@@ -14,7 +14,7 @@ app.use(cors({
   origin: "*",
 }))
 
-
+//Change all the lines in server.js before push for deployment
 
 // get queryTodos
 // app.get('/todos/:userEmail', async (req, res) => {
