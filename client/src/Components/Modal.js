@@ -67,6 +67,7 @@ const Modal = ({ mode, setShowModal, getData, task }) => {
       //destructure data and update the value of the key which is name
       ...data, // Using Spread Operator so that all exisiting properties if Data are retained
       [e.target.name]: e.target.value
+      //either can be written in the below format also:
       // [name]:value
     }))
     console.log(data)
