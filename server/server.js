@@ -13,6 +13,9 @@ app.use(express.json())
 app.use(cors({
   origin: "*",
 }))
+
+
+
 // get queryTodos
 // app.get('/todos/:userEmail', async (req, res) => {
 //   const { userEmail } = req.params;
