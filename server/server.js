@@ -306,7 +306,7 @@ app.post("/login", async (req, res) => {
 });
 
 //***************************************************************************
-// // Helper function to generate JWT token
+// Helper function to generate JWT token
 // function generateToken(user, secret, expiresIn = "36000m") {
 //   const payload = {
 //     user: {
