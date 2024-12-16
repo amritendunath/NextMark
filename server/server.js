@@ -15,6 +15,9 @@ app.use(cors({
 }))
 
 //Change all the lines in server.js before push for deployment
+//There are two ways to implement the backend
+//1. using authenticateToken which contains the data of the user 
+//2. using react cookies
 
 // get queryTodos
 // app.get('/todos/:userEmail', async (req, res) => {
