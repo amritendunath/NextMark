@@ -195,7 +195,7 @@ app.delete("/delete-note/:noteId", authenticateToken, async (req, res) => {
   }
 })
 
-//signup
+//signup:
 // app.post('/signup', async (req, res) => {
 //   const { email, password } = req.body
 //   const salt = bcrypt.genSaltSync(10)
