@@ -112,6 +112,7 @@ app.post("/add-note", authenticateToken, async (req, res) => {
 });
 
 //edit Data
+//conventional way to detect ID
 // app.put('/todos/:id', async (req, res) => {
 //   const { id } = req.params;
 //   const { user_email, title, progress, date } = req.body;
@@ -123,7 +124,7 @@ app.post("/add-note", authenticateToken, async (req, res) => {
 //   }
 // })
 
-
+//using.......
 app.put("/edit-note/:noteId", authenticateToken, async (req, res) => {
   const noteId = req.params.noteId;
   const { user } = req.user;
