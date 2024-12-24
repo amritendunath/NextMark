@@ -132,7 +132,7 @@ app.post("/add-note", authenticateToken, async (req, res) => {
 
 
 //using.......authenticationtoken which carries the data of user,,,
-//Method 2: using authenticationToken (Previsuly using Cookiees vs Token)
+//Method 2: using authenticationToken (Previsuly using Cookiees vs Now Token vs Future:Oauth)
 app.put("/edit-note/:noteId", authenticateToken, async (req, res) => {
   const noteId = req.params.noteId;
   const { user } = req.user;
