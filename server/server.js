@@ -281,10 +281,12 @@ app.post("/login", async (req, res) => {
   // if (!email) {
   //   return res.status(400).json({ message: "Email is required" });
   // }
-
   // if (!password) {
   //   return res.status(400).json({ message: "Password is required" });
   // }
+  //else can write like this
+  //if (!email || !password) {
+  //   return res.status(400).json({ error: true, message: "Email and password are required" });
 
   const user = await login(email)
   console.log('user', user)
