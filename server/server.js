@@ -261,6 +261,7 @@ app.post("/create-account", async (req, res) => {
 
 //*************************************************** */
 //Login
+//Method 1
 // app.post('/login', async (req, res) => {
 //   const { email, password } = req.body
 //   try {
@@ -275,6 +276,7 @@ app.post("/create-account", async (req, res) => {
 //     console.log(error)
 //   }
 // })
+//Method 2
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -359,6 +361,7 @@ app.post("/login", async (req, res) => {
 // });
 
 // // Login endpoint
+//Method 3
 // app.post("/login", async (req, res) => {
 //   const { email, password } = req.body;
 
