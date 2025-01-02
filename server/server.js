@@ -18,6 +18,7 @@ app.use(cors({
 //There are two ways to implement the backend
 //1. using authenticateToken which contains the data of the user 
 //2. using react cookies
+// Try to Push all the lines of code 
 
 // get queryTodos
 // app.get('/todos/:userEmail', async (req, res) => {
@@ -30,6 +31,9 @@ app.use(cors({
 //     console.error(err)
 //   }
 // })
+
+//Explain logic: How req.user data works in utils: autheticationToken (middleware)
+//How to use the perfect way to get the data of the user from the backend to the frontend 
 app.get("/get-all-notes", authenticateToken, async (req, res) => {
   const { user } = req.user;
   // const user_email = user.Items[0].email;
