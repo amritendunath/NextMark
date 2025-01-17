@@ -117,6 +117,7 @@ app.post("/add-note", authenticateToken, async (req, res) => {
 });
 
 //edit Data
+//Method 1
 //conventional way to detect ID
 // app.put('/todos/:id', async (req, res) => {
 //   const { id } = req.params;
