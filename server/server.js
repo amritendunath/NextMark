@@ -34,6 +34,7 @@ app.use(cors({
 
 //Explain logic: How req.user data works in utils: autheticationToken (middleware)
 //How to use the perfect way to get the data of the user from the backend to the frontend 
+//Decode the structure how to get the meta data in the correct form
 app.get("/get-all-notes", authenticateToken, async (req, res) => {
   const { user } = req.user;
   // const user_email = user.Items[0].email;
